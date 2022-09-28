@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Génération URL {% endblock %}</h1>
+    <div>
+        <form action="{{ url_for("generate_url")}}" method="POST">
+            <div>
+                <label for="login">LOGIN : </label>
+                <input type="text" name="login" id="login" required>
+            </div>
+            <div>
+                <label for="password"> PASSWORD : </label>
+                <input type="password" name="password" id="password" required>
+            </div>
+            <div>
+                <button>Génére URL</button>
+            </div>
+        </form>
+        <div>
+            {{ generated_url  }}
+        </div>
+    </div>
+{% endblock %}
