@@ -13,7 +13,7 @@ import base64
 from flask import Flask, render_template, request
 app = Flask(__name__)
 
-BASEURL = 'http://filou.iut-rodez.fr/pointe/'
+BASEURL = 'https://filou.iut-rodez.fr/pointe/'
 CRYPTOKEY = 'ohris31'
 
 
@@ -28,6 +28,7 @@ def generate_url():
     return render_template('index.html', generated_url=generated_url)
 
 @app.route('/')
+@app.route('/generate_url')
 def index():
     generated_url = ''
     return render_template('index.html', generated_url=generated_url)
