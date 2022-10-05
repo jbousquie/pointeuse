@@ -6,7 +6,7 @@
         <form action="{{ url_for("generate_url")}}" method="POST">
             <div>
                 <label for="login">LOGIN : </label>
-                <input type="text" name="login" id="login" required>
+                <input type="text" name="login" id="login" required autofocus>
             </div>
             <div>
                 <label for="password"> PASSWORD : </label>
@@ -16,8 +16,20 @@
                 <button>Génére URL</button>
             </div>
         </form>
-        <div>
-            {{ generated_url  }}
-        </div>
+        <br>
+        <span id="generated_url">
+            {{generated_url}}
+        </span>
+        <br>
+        <button onclick="copyText()">Copier/Coller</button>
     </div>
+    <script>
+        var copyText = function() {
+            var urlDiv = document.getElementById('generated_url');
+            var urlText = urlDiv.innerText;
+            navigator.clipboard.writeText(urlText);
+            urlDiv.style.backgroundColor = 'DarkBlue';
+            urlDiv.style.color = 'White';
+        }
+    </script>
 {% endblock %}

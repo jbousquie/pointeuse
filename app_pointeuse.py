@@ -33,6 +33,12 @@ def index():
     generated_url = ''
     return render_template('index.html', generated_url=generated_url)
 
+@app.route('/pointe/<login>/<encoded>')
+def pointe(login, encoded):
+    cryptokey = CRYPTOKEY
+    password = decode(cryptokey, encoded)
+    return password
+
 
 def encode(key, clear):
     enc = []
