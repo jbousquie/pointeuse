@@ -10,12 +10,21 @@
 # pip install flask gunicorn 
 
 import base64
+import json
+import time
+import CasAuthenticator.auth_webapp 
+import CasAuthenticator.cas_login
+import CasAuthenticator.config
 from flask import Flask, render_template, request
+
+
 app = Flask(__name__)
 
 BASEURL = 'https://filou.iut-rodez.fr/pointe/'
 CRYPTOKEY = 'ohris31'
 
+MAX_ATTEMPTS = 1
+DELAY_INC = 0.2
 
 @app.route('/generate_url', methods = ['POST'])
 def generate_url():
@@ -37,7 +46,39 @@ def index():
 def pointe(login, encoded):
     cryptokey = CRYPTOKEY
     password = decode(cryptokey, encoded)
-    return password
+    
+    headers_punch = {
+        'X-Requested-With': 'XMLHttpRequest',
+        'Accept': 'application/json, text/javascript, */*; q=0.01',
+        'Sec-Fetch-Dest': 'empty',
+        'Sec-Fetch-Mode': 'cors',
+        'Sec-Fetch-Site': 'same-origin'
+        }
+    service = "https://ohris.ut-capitole.fr/fr/"
+    action_url =  "https://ohris.ut-capitole.fr/fr/time/punch/add_virtual"
+
+    attempt = 0
+    delay = 0
+    msg = ''
+    unsuccessful = True
+    while attempt < MAX_ATTEMPTS and unsuccessful:
+        time.sleep(delay)
+
+        sa = CasAuthenticator.auth_webapp.auth_service(service, login, password)
+        action = CasAuthenticator.auth_webapp.exec_auth_action(sa, action_url, headers_punch)
+        json_msg = action.text
+        try:
+            obj_msg = json.loads(json_msg)
+            if obj_msg['result']== "success":
+                unsuccessful = False
+            enc_msg = obj_msg['message']
+            msg = bytes(enc_msg, 'utf-8').decode()
+        except ValueError as e:
+            msg = json_msg     
+        attempt = attempt + 1
+        delay = delay + DELAY_INC
+
+    return msg 
 
 
 def encode(key, clear):
