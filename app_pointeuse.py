@@ -23,7 +23,7 @@ app = Flask(__name__)
 BASEURL = 'https://filou.iut-rodez.fr/pointe/'
 CRYPTOKEY = 'ohris31'
 
-MAX_ATTEMPTS = 1
+MAX_ATTEMPTS = 5
 DELAY_INC = 0.2
 
 @app.route('/generate_url', methods = ['POST'])
