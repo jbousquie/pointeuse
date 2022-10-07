@@ -9,7 +9,13 @@ body {
 h1, h2 {
     text-align: center;
 }
+
 #generated_url {
 	text-align: left;
 	font-size: 18pt;
+}
+
+#badge {
+	width: 100px;
+	padding-left: 97%;
 }
