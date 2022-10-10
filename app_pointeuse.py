@@ -21,19 +21,18 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 
 BASEURL = 'https://filou.iut-rodez.fr/pointe/'
-CRYPTOKEY = 'ohris31'
 
 MAX_ATTEMPTS = 5
 DELAY_INC = 0.2
 
 @app.route('/generate_url', methods = ['POST'])
 def generate_url():
-    cryptokey = CRYPTOKEY
     login = request.form.get('login')
+    key = request.form.get('key')
     password = request.form.get('password')
-    #enc_login = encode(cryptokey, login)
+    cryptokey = getCryptokey(login, key)
     enc_password = encode(cryptokey, password)
-    generated_url = BASEURL + login + '/' + enc_password
+    generated_url = BASEURL + login + '/' + key + '/' + enc_password
     return render_template('index.html', generated_url=generated_url)
 
 @app.route('/')
@@ -42,11 +41,11 @@ def index():
     generated_url = ''
     return render_template('index.html', generated_url=generated_url)
 
-@app.route('/pointe/<login>/<encoded>')
-def pointe(login, encoded):
-    cryptokey = CRYPTOKEY
+@app.route('/pointe/<login>/<key>/<encoded>')
+def pointe(login, key, encoded):
+    cryptokey = getCryptokey(login, key)
     password = decode(cryptokey, encoded)
-    
+
     headers_punch = {
         'X-Requested-With': 'XMLHttpRequest',
         'Accept': 'application/json, text/javascript, */*; q=0.01',
@@ -98,6 +97,9 @@ def decode(key, enc):
         dec.append(dec_c)
     return "".join(dec)
 
+def getCryptokey(login, key):
+    mix = key + login
+    return mix[0:8]
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
