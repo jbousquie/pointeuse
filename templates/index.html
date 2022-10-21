@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="row">
+    <div class="col-12 border">
     <h1>{% block title %} Génération URL {% endblock %}</h1>
     <div>
         <form action="{{ url_for("generate_url")}}" method="POST">
@@ -26,11 +28,13 @@
         </span>
         <br>
         <button onclick="copyText()">Copier/Coller</button>
+    </div>
+</div>
+</div>
         <br><br>
         <div id="bagde">
             <button onclick="location.href='{{generated_url}}'">Badger directement</button>
         </div>
-    </div>
     <script>
         var copyText = function() {
             var urlDiv = document.getElementById('generated_url');
