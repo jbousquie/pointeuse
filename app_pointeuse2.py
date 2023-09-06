@@ -12,7 +12,6 @@
 import base64
 import json
 import time
-import CasAuthenticator.auth_webapp 
 import CasAuthenticator.cas_login
 import CasAuthenticator.config
 from flask import Flask, render_template, request
@@ -56,43 +55,38 @@ def pointe(login, key, encoded):
     service = "https://ohris.ut-capitole.fr/fr/"
     action_url =  "https://ohris.ut-capitole.fr/fr/time/punch/add_virtual"
 
-    attempt = 0
-    delay = 2
     msg = ''
-    log = '\n\n'
-    unsuccessful = True
-    while attempt < MAX_ATTEMPTS and unsuccessful:
+    m = ''
+    ca = CasAuthenticator.cas_login.CasAuthenticator()
+    tgc = ca.get_tgc(login, password)
+    if tgc == '':
+        msg = "Erreur authentification CAS pour " + login
+        return msg
+    redirection_url = ca.get_redirection_url(service)
 
-        sa = CasAuthenticator.auth_webapp.auth_service(service, login, password)
-        if sa.status_code == 200:
-            time.sleep(4)
-            action = CasAuthenticator.auth_webapp.exec_auth_action(sa, action_url, headers_punch)
-            if action.status_code == 200:
-                json_msg = action.text
-                try:
-                    obj_msg = json.loads(json_msg)
-                    if obj_msg['result']== "success":
-                        unsuccessful = False
-                    enc_msg = obj_msg['message']
-                    msg = bytes(enc_msg, 'utf-8').decode()
+    # authentif service avec le ticket CAS
+    sa =  CasAuthenticator.cas_login.ServiceAuthenticator(service)
+    sa.getAuthenticatedService(redirection_url)
+    if sa.status_code == 200:
+        time.sleep(3.5)
+        action = sa.execAction(action_url, headers_punch)
+        if action.status_code == 200:
+            json_msg = action.text
+            try:
+                obj_msg = json.loads(json_msg)
+                if obj_msg['result']== "success":
                     m = 'Action réussie\n'
-                    log = log + m
-                except ValueError as e:
-                    m = 'décodage JSON impossible.\n'
-                    log = log + m
-                    msg = json_msg 
-            else: 
-                m = 'app_pointeurse.py - exec_auth_ection échoué  essai : ' + str(attempt + 1) + ' status code : ' + str(action.status_code) + '\n'
-                log = log + m
-                print(m) 
+                enc_msg = obj_msg['message']
+                msg = m + bytes(enc_msg, 'utf-8').decode()
+            except ValueError as e:
+                m = 'Erreur : décodage JSON impossible.\n'
+                msg = m + json_msg 
         else:
-            m = 'app_pointeuse.py - auth_service échoué essai global : ' + str(attempt + 1) + ' après 4 tentatives CAS+Ohris, status code : ' + str(sa.status_code) + '\n'
-            log = log + m
-            print(m)
-        attempt = attempt + 1
-        delay = delay + DELAY_INC
+            msg = 'Accès authentifié à Ohris OK, mais impossible de pointer'
+    else:
+        msg = 'Authentification CAS réussie, mais impossible d\'obtenir la page Ohris authentifée'
     
-        msg = msg + log
+    print(msg)
     return msg 
 
 
@@ -117,5 +111,8 @@ def getCryptokey(login, key):
     mix = key + login
     return mix[0:8]
 
+# if __name__ == '__main__':
+#     app.run(host='0.0.0.0')
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    pointe('jbousqui', '1703', 'wp5rwp7Cp8KewpvCp8Kt')
