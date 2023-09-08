@@ -111,8 +111,6 @@ def getCryptokey(login, key):
     mix = key + login
     return mix[0:8]
 
-# if __name__ == '__main__':
-#     app.run(host='0.0.0.0')
-
 if __name__ == '__main__':
-    pointe('jbousqui', '1703', 'wp5rwp7Cp8KewpvCp8Kt')
+     app.run(host='0.0.0.0')
+
