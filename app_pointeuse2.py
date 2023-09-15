@@ -68,7 +68,7 @@ def pointe(login, key, encoded):
     sa =  CasAuthenticator.cas_login.ServiceAuthenticator(service)
     sa.getAuthenticatedService(redirection_url)
     if sa.status_code == 200:
-        time.sleep(3.5)
+        time.sleep(2.5)
         action = sa.execAction(action_url, headers_punch)
         if action.status_code == 200:
             json_msg = action.text
@@ -82,9 +82,9 @@ def pointe(login, key, encoded):
                 m = 'Erreur : décodage JSON impossible.\n'
                 msg = m + json_msg 
         else:
-            msg = 'Accès authentifié à Ohris OK, mais impossible de pointer'
+            msg = 'Accès authentifié à Ohris réussi, mais impossible de pointer.'
     else:
-        msg = 'Authentification CAS réussie, mais impossible d\'obtenir la page Ohris authentifée'
+        msg = 'Authentification CAS réussie, mais impossible d\'obtenir la page Ohris authentifée.'
     
     print(msg)
     return msg 
