@@ -59,7 +59,6 @@ def pointe(login, key, encoded):
     m = ''
     sa =  CasAuthenticator.cas_login.ServiceAuthenticator(service)
     sa.initialGet(service)   # requête initiale pour obtenir la session Ohris
-    time.sleep(1)
     ca = CasAuthenticator.cas_login.CasAuthenticator()
     tgc = ca.get_tgc(login, password)
     if tgc == '':
@@ -71,7 +70,7 @@ def pointe(login, key, encoded):
     time.sleep(1)
     sa.getAuthenticatedService(redirection_url)
     if sa.status_code == 200:
-        time.sleep(2)
+        time.sleep(1.5)
         action = sa.execAction(action_url, headers_punch)
         if action.status_code == 200:
             json_msg = action.text
@@ -115,9 +114,12 @@ def getCryptokey(login, key):
     return mix[0:8]
 
 
-
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    pointe('jbousqui', '1703', 'wp5rwp7Cp8KewpvCp8Kt')
+
+
+# if __name__ == '__main__':
+#     app.run(host='0.0.0.0')
 
 
 
