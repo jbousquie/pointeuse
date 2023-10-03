@@ -3,7 +3,7 @@
 
 # https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-20-04
 
-from app_pointeuse2 import app
+from app_pointeuse3 import app
 
 if __name__ == "__main__":
     app.run()
