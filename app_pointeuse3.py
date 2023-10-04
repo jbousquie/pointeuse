@@ -179,10 +179,10 @@ def pointe(login, key, encoded):
      # requête initiale pour obtenir la session Ohris et éviter des bugs de redirection chez Ohris
     ini_get = sa.formattedGet(service)     
     if ini_get.status_code != 200:
-        msg = 'Serveur Ohris inaccessible'
+        msg = 'Ohris non redirigé sur CAS : ' + str(ini_get.status_code)
         print(msg)
         return msg
-    print('Serveur Ohris online : OK')
+    print('Page d\'accueil Ohris redirige sur CAS : OK')
 
     # authentification CAS à partir de la réponse précédente
     # on attend un code de redirection 302 vers Ohris
@@ -194,8 +194,9 @@ def pointe(login, key, encoded):
     print('Authentification CAS : OK')
 
     # Envoi du ST-CAS vers Orhis et obtention de la page d'accueil
+    time.sleep(1.5)
     st_tkt_url = auth_cas.headers['Location']           # extraction de l'URL de redirection contenant le ST
-    auth_service = sa.formattedGet(st_tkt_url)            # requête vers Ohris avec le ST
+    auth_service = sa.formattedGet(st_tkt_url)          # requête vers Ohris avec le ST
     if auth_service.status_code != 200:
         msg = 'Échec d\'accès à la page authentifiée d\'Ohris'
         print(msg)
