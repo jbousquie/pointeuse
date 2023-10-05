@@ -35,6 +35,18 @@ GET_HEADERS = {
     'Host': HOST
 }
 
+SERVICE_GET_HEADERS = {
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+    'Accept-Encoding': 'gzip, deflate, br', 
+    'Accept-Language': 'fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7', 
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.2 Safari/605.1.15',
+    'Cache-Control': 'max-age=0',
+    'Connection': 'keep-alive',
+    'Host': 'orhis.ut-capitole.fr'
+}
+
+
+
 CAS_POST_HEADERS = {
     'Accept': 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
     'Accept-Encoding': 'gzip, deflate, br', 
@@ -98,7 +110,7 @@ class ServiceAuthenticator:
     # Envoi requête formatée comme un browser
     def formattedGet(self, service, redirect):
         u = requests.utils.urlparse(service)
-        service_headers = self.service_headers
+        service_headers = SERVICE_GET_HEADERS
         service_headers['Host'] = u.netloc
         service_headers['Referer'] = u.netloc
         service_session = self.service_session
@@ -245,5 +257,6 @@ def getCryptokey(login, key):
     return mix[0:8]
 
 
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+     app.run(host='0.0.0.0')
