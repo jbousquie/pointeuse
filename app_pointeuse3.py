@@ -180,7 +180,14 @@ def pointe(login, key, encoded):
         'Accept': 'application/json, text/javascript, */*; q=0.01',
         'Sec-Fetch-Dest': 'empty',
         'Sec-Fetch-Mode': 'cors',
-        'Sec-Fetch-Site': 'same-origin'
+        'Sec-Fetch-Site': 'same-origin',
+        'Accept': 'application/json, text/javascript, */*; q=0.01',
+        'Accept-Encoding': 'gzip, deflate, br', 
+        'Accept-Language': 'fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7', 
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.2 Safari/605.1.15',
+        'Referer': 'https://ohris.ut-capitole.fr/fr/',
+        'Host': 'ohris.ut-capitole.fr',
+        'Connection': 'keep-alive'
         }
     service = "https://ohris.ut-capitole.fr/fr/"
     action_url =  "https://ohris.ut-capitole.fr/fr/time/punch/add_virtual"
@@ -206,7 +213,7 @@ def pointe(login, key, encoded):
     print('Authentification CAS : OK')
 
     # Envoi du ST-CAS vers Orhis et obtention de la page d'accueil
-    time.sleep(1.5)
+    # time.sleep(1.5)
     st_tkt_url = auth_cas.headers['Location']           # extraction de l'URL de redirection contenant le ST
     auth_service = sa.formattedGet(st_tkt_url, True)          # requête vers Ohris avec le ST
     if auth_service.status_code != 200:
@@ -216,7 +223,7 @@ def pointe(login, key, encoded):
     print('Page Ohris authentifiée CAS : OK')
 
     # envoi de la requête de pointage
-    time.sleep(2)
+    time.sleep(1)
     action = sa.execAction(action_url, headers_punch)
     msg = 'Authentification Ohris réussie, mais échec pointage'
     if action.status_code == 200:
