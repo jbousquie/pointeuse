@@ -9,9 +9,10 @@ import json
 import time
 import sys
 import requests
+from datetime import timedelta
 from bs4 import BeautifulSoup
 from pprint import pp
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, make_response
 
 sys.stdout.reconfigure(encoding='utf-8')
 
@@ -161,7 +162,9 @@ def generate_url():
     cryptokey = getCryptokey(login, key)
     enc_password = encode(cryptokey, password)
     generated_url = BASEURL + login + '/' + key + '/' + enc_password
-    return render_template('index.html', generated_url=generated_url)
+    resp = make_response(render_template('index.html', generated_url=generated_url))
+    resp.set_cookie('url', generated_url, max_age=timedelta(days=400))
+    return resp
 
 @app.route('/')
 @app.route('/generate_url')

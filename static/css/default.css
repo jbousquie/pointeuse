@@ -1,6 +1,6 @@
 body {
 	margin: 0; 
-	padding: 20px 20px 20px ; 
+	/*padding: 20px 20px 20px ; */
     color: #505050; 
     background-color: #f3f3f3;
 	font-family: arial, helvetica, sans-serif ;
@@ -13,9 +13,31 @@ h1, h2 {
 #generated_url {
 	text-align: left;
 	font-size: 18pt;
+	border-width: 1px;
+	border-style: solid;
+	padding: 3px;
+	padding-left: 6px;
+	padding-right: 6px;
 }
 
-#badge {
-	width: 100px;
-	padding-left: 97%;
+#badgeDirectText {
+	position: relative;
+	top: -300px;
+	font-weight: 600;
+	background-color: lightgreen;
+	border-radius: 10px;
+}
+
+#buttonBadge {
+	padding: 60px;
+	position: relative;
+	top: -300px;
+	left: 0px;
+}
+
+circle {
+	fill: limegreen;
+}
+#col1 {
+	height: 300px;
 }

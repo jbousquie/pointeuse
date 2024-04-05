@@ -1,40 +1,64 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="row">
-    <div class="col-12 border">
-    <h1>{% block title %} Génération URL {% endblock %}</h1>
-    <div>
-        <form action="{{ url_for("generate_url")}}" method="POST">
-            <div>
-                <label for="login">LOGIN : </label>
-                <input type="text" name="login" id="login" required autofocus>
-            </div>
-            <div>
-                <label for="password">PASSWORD : </label>
-                <input type="password" name="password" id="password" required>
-            </div>
-            <div>
-                <label for="key">CLE : </label>
-                <input type="text" name="key" id="key" required>
-            </div>
-            <div>
-                <button>Génére URL</button>
-            </div>
-        </form>
-        <br>
-        <span id="generated_url">
-            {{generated_url}}
-        </span>
-        <br>
-        <button onclick="copyText()">Copier/Coller</button>
+<div class="row m-5">
+    <div id="col1" class="col-12 d-flex justify-content-center text-center">
+        <div id="bagde">
+            <svg id="circleBox" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="150" cy="150" r="150"/>
+            </svg>
+            <input type="image" src="{{ url_for('static', filename='img/date_clock.svg') }}" width="300px" height="300px" alt="Badger" id="buttonBadge">
+            <div id="badgeDirectText">BADGER DIRECTEMENT</div>
+        </div>
     </div>
 </div>
+<div class="row m-2">
+    <div class="col-12 d-flex justify-content-end"></div>
+        <h1>{% block title %} Génération URL {% endblock %}</h1>
+    </div>
 </div>
-        <br><br>
-        <div id="bagde">
-            <button onclick="location.href='{{generated_url}}'">Badger directement</button>
+<form action="{{ url_for('generate_url') }}" method="POST">
+    <div class="row m-2">
+        <div class="col-3 d-flex justify-content-end">
+            <label for="login">LOGIN</label>
         </div>
+        <div class="col-2">
+            <input type="text" name="login" id="login" required autofocus>
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col-3 d-flex justify-content-end">
+            <label for="password">PASSWORD</label>
+        </div>
+        <div class="col-2 d-flex justify-content-start">
+            <input type="password" name="password" id="password" required>
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col-3 d-flex justify-content-end">
+            <label for="key">CLE</label>
+        </div>
+        <div class="col-2">
+            <input type="text" name="key" id="key" required>
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col-6 d-flex justify-content-center">
+            <button>Génére URL</button>
+        </div>
+    </div>
+</form>
+</div>
+<div class="row m-2">
+    <div class="col-8 d-flex justify-content-center">
+        <span id="generated_url"></span>
+    </div>
+</div>
+<div class="row m-2">
+    <div class="col-8 d-flex justify-content-center">
+        <button onclick="copyText()">&nbsp;&nbsp;Copier/Coller&nbsp;&nbsp;</button>
+    </div>
+</div>
     <script>
         var copyText = function() {
             var urlDiv = document.getElementById('generated_url');
@@ -43,5 +67,30 @@
             urlDiv.style.backgroundColor = 'DarkBlue';
             urlDiv.style.color = 'White';
         }
+
+        var getCookie = function(name) {
+            let cookie = "";
+            let cookies = document.cookie;
+            let cookieArr = cookies.split(";");
+            for (let i = 0; i < cookieArr.length; i++) {
+                let cookiePair = cookieArr[i].split("=");
+                if (name == cookiePair[0].trim()) {
+                    cookie = decodeURIComponent(cookiePair[1]);
+                }
+            }
+            return cookie;
+        }
+
+        var init = function() {
+            let target = getCookie("url");
+            let url_elem = document.getElementById('generated_url');
+            url_elem.innerText = target;
+            let button_elem = document.getElementById("buttonBadge");
+            button_elem.onclick = () => {
+                document.location.href = target;
+            }
+        }
+
+        window.onload = init;
     </script>
 {% endblock %}
