@@ -3,7 +3,7 @@
 {% block content %}
 <div class="row m-1 mb-5">
     <div id="col1" class="col-12 d-flex justify-content-center text-center">
-        <div id="bagde">
+        <div id="badge">
             <svg id="circleBox" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="100" cy="100" r="75"/>
             </svg>
@@ -98,14 +98,27 @@
             elem.innerText = msg;
         }
 
+        var sanitize = function(text) {
+            if (text.length > 0) {
+                let san = text.replaceAll('"', '');
+                return san;
+            }
+            return text;
+        }
+
         var init = function() {
-            let target = getCookie("url");
+            let target = sanitize(getCookie("url"));
             let url_elem = document.getElementById('generated_url');
             url_elem.innerText = target;
-            let button_elem = document.getElementById("buttonBadge");
+            let button_elem = document.getElementById("badge");
             button_elem.onclick = () => {
                 badge(target);
             }
+            if (target.length == 0) {
+                button_elem.style.visibility = "hidden";
+                button_elem.style.height = "0px";
+            }
+
         }
 
         window.onload = init;
