@@ -172,6 +172,11 @@ def index():
     generated_url = ''
     return render_template('index.html', generated_url=generated_url)
 
+@app.route('/test')
+def test():
+    return render_template('test.txt')
+
+
 
 @app.route('/pointe/<login>/<key>/<encoded>')
 def pointe(login, key, encoded):
