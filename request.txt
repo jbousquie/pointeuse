@@ -1,0 +1,244 @@
+req1 :
+GET / HTTP/1.1
+Host: ohris.ut-capitole.fr
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:134.0) Gecko/20100101 Firefox/134.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Cookie: SERVERID177380=72a77181|Z5tsE|Z5thp
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Priority: u=0, i
+Pragma: no-cache
+Cache-Control: no-cache
+
+rep1 : 
+HTTP/1.1 302 Found
+Date: Thu, 30 Jan 2025 12:10:40 GMT
+Server: Apache
+x-frame-options: SAMEORIGIN
+referrer-policy: strict-origin-when-cross-origin
+location: https://sso.ut-capitole.fr/cas/login?service=https%3A%2F%2Fohris.ut-capitole.fr%2F
+x-xss-protection: 1; mode=block
+x-content-type-options: nosniff
+permissions-policy: accelerometer=(), geolocation=('self'), fullscreen=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), display-capture=('self')
+content-security-policy: default-src https: 'unsafe-inline' 'unsafe-eval' ohris.info maxcdn.bootstrapcdn.com; img-src 'self' https://maps.gstatic.com https://maps.googleapis.com data: blob:;
+content-type: text/html; charset=UTF-8
+x-iplb-request-id: C13130A9:9D6C_93878F6C:01BB_679B6C40_60F4F0:13AD
+strict-transport-security: max-age=15768000
+x-iplb-instance: 54244
+set-cookie: __Secure-sess=tlqt6ne7n6j9ma4323hiodgnks; path=/; secure; HttpOnly; SameSite=lax;HttpOnly;Secure
+set-cookie: SERVERID177380=72a77181|Z5tsQ|Z5thp; path=/; HttpOnly
+Content-Length: 0
+Keep-Alive: timeout=15, max=100
+Connection: Keep-Alive
+
+req2 : 
+GET /cas/login?service=https%3A%2F%2Fohris.ut-capitole.fr%2F HTTP/1.1
+Host: sso.ut-capitole.fr
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:134.0) Gecko/20100101 Firefox/134.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Cookie: LOADBALANCEIDCAS=s1
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Priority: u=0, i
+Pragma: no-cache
+Cache-Control: no-cache
+
+rep2 : 
+HTTP/1.1 200 OK
+date: Thu, 30 Jan 2025 12:10:40 GMT
+server: Apache/2.4.37 (Red Hat Enterprise Linux) Lemonldap::NG/2.20.1 mod_fcgid/2.3.9 mod_perl/2.0.12 Perl/v5.26.3
+x-xss-protection: 1; mode=block
+x-content-type-options: nosniff
+cache-control: no-cache, no-store, must-revalidate
+pragma: no-cache
+expires: 0
+access-control-allow-origin: *
+access-control-allow-credentials: true
+access-control-allow-headers: *
+access-control-allow-methods: POST,GET
+access-control-expose-headers: *
+access-control-max-age: 86400
+x-frame-options: DENY
+content-security-policy: default-src 'self';img-src 'self' data:;style-src 'self';font-src 'self';connect-src 'self';script-src 'self';form-action * https://sso.ut-capitole.fr;frame-ancestors 'none';
+set-cookie: lemonldappdata=%7B%22issuerRequestcasPath%22%3A%5B%22login%22%5D%2C%22keepPdata%22%3A%5B%22issuerRequestcas%22%2C%22issuerRequestcasPath%22%5D%2C%22_url%22%3A%22aHR0cHM6Ly9zc28udXQtY2FwaXRvbGUuZnIvY2Fz%22%2C%22targetAuthnLevel%22%3A2%2C%22issuerRequestcas%22%3A%221738167160_45021%22%2C%22issuerTs%22%3A1738239040%7D; path=/; HttpOnly=1; SameSite=None; secure
+vary: Accept-Encoding,User-Agent
+content-encoding: gzip
+content-length: 2505
+content-type: text/html; charset=UTF-8
+connection: close
+
+req3 : 
+POST /cas/login?service=https%3A%2F%2Fohris.ut-capitole.fr%2Ffr%2F HTTP/1.1
+Host: sso.ut-capitole.fr
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:134.0) Gecko/20100101 Firefox/134.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3
+Accept-Encoding: gzip, deflate, br, zstd
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 127
+Origin: https://sso.ut-capitole.fr
+Connection: keep-alive
+Referer: https://sso.ut-capitole.fr/cas/login?service=https%3A%2F%2Fohris.ut-capitole.fr%2Ffr%2F
+Cookie: LOADBALANCEIDCAS=s1; lemonldappdata=%7B%22keepPdata%22%3A%5B%22issuerRequestcas%22%2C%22issuerRequestcasPath%22%2C%22issuerRequestcas%22%2C%22issuerRequestcasPath%22%5D%2C%22issuerRequestcasPath%22%3A%5B%22login%22%5D%2C%22issuerRequestcas%22%3A%221738167706_26774%22%2C%22issuerTs%22%3A1738239595%2C%22_url%22%3A%22aHR0cHM6Ly9zc28udXQtY2FwaXRvbGUuZnIvY2Fz%22%2C%22targetAuthnLevel%22%3A2%7D
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Priority: u=0, i
+Pragma: no-cache
+Cache-Control: no-cache
+
++ body
+url=aHR0cHM6Ly9zc28udXQtY2FwaXRvbGUuZnIvY2Fz&timezone=1&skin=ut-capitole&token=1738167715_12882&user=jbousqui&password=totototo
+
+
+rep3 :
+HTTP/1.1 302 Found
+date: Thu, 30 Jan 2025 12:20:13 GMT
+server: Apache/2.4.37 (Red Hat Enterprise Linux) Lemonldap::NG/2.20.1 mod_fcgid/2.3.9 mod_perl/2.0.12 Perl/v5.26.3
+set-cookie: lemonldap=c0d0f275ad1573b606bcc2132652c667df00666b3559e601e6ae9e79435b7933; domain=.sso.ut-capitole.fr; path=/; HttpOnly=1; SameSite=None; secure
+set-cookie: lemonldappdata=; path=/; expires=Wed, 21 Oct 2015 00:00:00 GMT; HttpOnly=1; SameSite=None; secure
+set-cookie: lemonldappdata=; domain=.sso.ut-capitole.fr; path=/; expires=Wed, 21 Oct 2015 00:00:00 GMT; HttpOnly=1; SameSite=None; secure
+location: https://ohris.ut-capitole.fr/?ticket=ST-2171604816062599ec61b70b1d965cd9f935789ef79a1bf42bea71c217e1e9a7
+vary: User-Agent
+content-length: 0
+connection: close
+
+req4 : 
+GET /?ticket=ST-2171604816062599ec61b70b1d965cd9f935789ef79a1bf42bea71c217e1e9a7 HTTP/1.1
+Host: ohris.ut-capitole.fr
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:134.0) Gecko/20100101 Firefox/134.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3
+Accept-Encoding: gzip, deflate, br, zstd
+Referer: https://sso.ut-capitole.fr/
+Connection: keep-alive
+Cookie: SERVERID177380=72a77181|Z5tub|Z5thp; __Secure-sess=tlqt6ne7n6j9ma4323hiodgnks
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-site
+Sec-Fetch-User: ?1
+Priority: u=0, i
+Pragma: no-cache
+Cache-Control: no-cache
+
+rep4 :
+HTTP/1.1 302 Found
+Date: Thu, 30 Jan 2025 12:20:13 GMT
+Server: Apache
+x-frame-options: SAMEORIGIN
+referrer-policy: strict-origin-when-cross-origin
+location: https://ohris.ut-capitole.fr/
+x-xss-protection: 1; mode=block
+x-content-type-options: nosniff
+permissions-policy: accelerometer=(), geolocation=('self'), fullscreen=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), display-capture=('self')
+content-security-policy: default-src https: 'unsafe-inline' 'unsafe-eval' ohris.info maxcdn.bootstrapcdn.com; img-src 'self' https://maps.gstatic.com https://maps.googleapis.com data: blob:;
+content-type: text/html; charset=UTF-8
+x-iplb-request-id: C13130A9:B4EC_93878F6C:01BB_679B6E7D_610136:13AD
+strict-transport-security: max-age=15768000
+x-iplb-instance: 54244
+set-cookie: __Secure-sess=deleted; expires=Thu, 01-Jan-1970 00:00:01 GMT; Max-Age=0; path=/; secure; HttpOnly; SameSite=lax;HttpOnly;Secure
+set-cookie: __Secure-sess=nh2tq4adgpi1rrhksn1gcddj9h; path=/; secure; HttpOnly; SameSite=lax;HttpOnly;Secure
+set-cookie: SERVERID177380=72a77181|Z5tug|Z5thp; path=/; HttpOnly
+Keep-Alive: timeout=15, max=100
+Connection: Keep-Alive
+Transfer-Encoding: chunked
+
+req5 : 
+GET / HTTP/1.1
+Host: ohris.ut-capitole.fr
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:134.0) Gecko/20100101 Firefox/134.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3
+Accept-Encoding: gzip, deflate, br, zstd
+Referer: https://sso.ut-capitole.fr/
+Connection: keep-alive
+Cookie: SERVERID177380=72a77181|Z5tug|Z5thp; __Secure-sess=nh2tq4adgpi1rrhksn1gcddj9h
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-site
+Sec-Fetch-User: ?1
+Priority: u=0, i
+Pragma: no-cache
+Cache-Control: no-cache
+
+rep5 :
+HTTP/1.1 302 Found
+Date: Thu, 30 Jan 2025 12:20:13 GMT
+Server: Apache
+x-frame-options: SAMEORIGIN
+referrer-policy: strict-origin-when-cross-origin
+cache-control: max-age=0, must-revalidate, private
+location: /fr/
+link: <https://univ-tls1.ohris.info/api/docs.jsonld>; rel="http://www.w3.org/ns/hydra/core#apiDocumentation"
+x-robots-tag: noindex
+expires: Thu, 30 Jan 2025 12:20:14 GMT
+x-xss-protection: 1; mode=block
+x-content-type-options: nosniff
+permissions-policy: accelerometer=(), geolocation=('self'), fullscreen=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), display-capture=('self')
+content-security-policy: default-src https: 'unsafe-inline' 'unsafe-eval' ohris.info maxcdn.bootstrapcdn.com; img-src 'self' https://maps.gstatic.com https://maps.googleapis.com data: blob:;
+content-type: text/html; charset=utf-8
+x-iplb-request-id: C13130A9:B4EC_93878F6C:01BB_679B6E7D_610138:13AD
+strict-transport-security: max-age=15768000
+x-iplb-instance: 54244
+set-cookie: __Secure-sess=q91fmqhvuhlvlpshlifma8gpkc; path=/; secure; httponly; samesite=lax;HttpOnly;Secure
+Keep-Alive: timeout=15, max=99
+Connection: Keep-Alive
+Transfer-Encoding: chunked
+
+req6 :
+GET /fr/ HTTP/1.1
+Host: ohris.ut-capitole.fr
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:134.0) Gecko/20100101 Firefox/134.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3
+Accept-Encoding: gzip, deflate, br, zstd
+Referer: https://sso.ut-capitole.fr/
+Connection: keep-alive
+Cookie: SERVERID177380=72a77181|Z5tug|Z5thp; __Secure-sess=q91fmqhvuhlvlpshlifma8gpkc
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-site
+Sec-Fetch-User: ?1
+Priority: u=0, i
+Pragma: no-cache
+Cache-Control: no-cache
+
+rep6 : 
+HTTP/1.1 200 OK
+Date: Thu, 30 Jan 2025 12:20:14 GMT
+Server: Apache
+x-frame-options: SAMEORIGIN
+referrer-policy: strict-origin-when-cross-origin
+cache-control: max-age=0, must-revalidate, private
+link: <https://univ-tls1.ohris.info/api/docs.jsonld>; rel="http://www.w3.org/ns/hydra/core#apiDocumentation"
+x-robots-tag: noindex
+expires: Thu, 30 Jan 2025 12:20:14 GMT
+vary: Accept-Encoding
+x-xss-protection: 1; mode=block
+x-content-type-options: nosniff
+permissions-policy: accelerometer=(), geolocation=('self'), fullscreen=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), display-capture=('self')
+content-security-policy: default-src https: 'unsafe-inline' 'unsafe-eval' ohris.info maxcdn.bootstrapcdn.com; img-src 'self' https://maps.gstatic.com https://maps.googleapis.com data: blob:;
+content-type: text/html; charset=UTF-8
+x-iplb-request-id: C13130A9:B4EC_93878F6C:01BB_679B6E7E_61013B:13AD
+strict-transport-security: max-age=15768000
+x-iplb-instance: 54244
+Keep-Alive: timeout=15, max=98
+Connection: Keep-Alive
+Transfer-Encoding: chunked

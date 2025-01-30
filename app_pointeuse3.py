@@ -17,12 +17,12 @@ from flask import Flask, render_template, request, make_response
 sys.stdout.reconfigure(encoding='utf-8')
 
 
-CAS_URL = 'https://cas.ut-capitole.fr/cas/login'
+CAS_URL = 'https://sso.ut-capitole.fr/cas/login'
 #REFERER = 'https://cas.ut-capitole.fr/cas/login'
-REFERER = 'https://cas.ut-capitole.fr/'
-ORIGIN = 'https://cas.ut-capitole.fr'
+REFERER = 'https://sso.ut-capitole.fr/'
+ORIGIN = 'https://sso.ut-capitole.fr'
 
-HOST = 'cas.ut-capitole.fr'
+HOST = 'sso.ut-capitole.fr'
 COOKIE_TGC = 'CASTGC='
 
 
